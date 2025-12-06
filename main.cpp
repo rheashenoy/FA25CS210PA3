@@ -142,14 +142,12 @@ bool dfs(int r, int c, const vector<vector<int>>& maze, vector<vector<bool>>& vi
             else if (visited[nr][nc]) {
                 continue;
             }
-            r = parent_r[nr][nc];
-            c = parent_c[nr][nc];
+            parent_r[nr][nc] = r;
+            parent_c[nr][nc] = c;
             visited[nr][nc] = true;
             if (dfs (nr, nc, maze, visited, parent_r, parent_c, exit_r, exit_c)) {
                 return true;
             }
-            else {
-                return false;
             }
         }
 
