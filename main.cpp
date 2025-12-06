@@ -134,7 +134,7 @@ bool dfs(int r, int c, const vector<vector<int>>& maze, vector<vector<bool>>& vi
             int nc = c + dc[i];
 
             if (nr < 0 || nr >= maze.size() || nc < 0 || nc >= maze[0].size()) {
-                return false;
+                continue;
             }
             else if (maze[nr][nc] == 1) {
                 continue;
