@@ -148,6 +148,8 @@ bool dfs(int r, int c, const vector<vector<int>>& maze, vector<vector<bool>>& vi
             if (dfs (nr, nc, maze, visited, parent_r, parent_c, exit_r, exit_c)) {
                 return true;
             }
+            else {
+                return false;
             }
         }
 
