@@ -115,7 +115,7 @@ void printPath(pair<int,int> exitcell,
 bool dfs(int r, int c, const vector<vector<int>>& maze, vector<vector<bool>>& visited,
          vector<vector<int>>& parent_r, vector<vector<int>>& parent_c, int exit_r, int exit_c)
 {
-    if (r > maze.size() || c > maze[0].size()) {
+    if (r < 0 || r >= maze.size() || c >= maze[0].size() || c < 0) {
         return false;
     }
     if (maze[r][c] == 1) {
@@ -128,7 +128,32 @@ bool dfs(int r, int c, const vector<vector<int>>& maze, vector<vector<bool>>& vi
     if (r == exit_r && c == exit_c) {
         return true;
     }
+    else {
+        for (int i = 0; i < 4; i++) {
+            int nr = r + dr[i];
+            int nc = c + dc[i];
 
+            if (nr < 0 || nr >= maze.size() || nc < 0 || nc >= maze[0].size()) {
+                return false;
+            }
+            else if (maze[nr][nc] == 1) {
+                continue;
+            }
+            else if (visited[nr][nc]) {
+                continue;
+            }
+            r = parent_r[nr][nc];
+            c = parent_c[nr][nc];
+            visited[nr][nc] = true;
+            if (dfs (nr, nc, maze, visited, parent_r, parent_c, exit_r, exit_c)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+    }
 }
 
 
